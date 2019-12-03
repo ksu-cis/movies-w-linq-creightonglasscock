@@ -8,7 +8,7 @@
         <div class="results">
             <h1>Movies</h1>
 
-            @if (Model.Movies.Count == 0)
+            @if (Model.Movies.Count() == 0)
             {
                 <h2>No Results</h2>
             }
@@ -55,7 +55,7 @@
         <form method="post">
 
             <h4>Search</h4>
-            <input type="text" name="search" value="@Model.search"/>
+            <input type="text" name="search" value="@Model.search" />
 
             <input type="submit" value="Search and Filter" />
 
@@ -84,13 +84,21 @@
             <h4>Review Scores</h4>
             <label>
                 Minimum IMDB Rating:
-                <input type="number" min="0" max="10" step="0.1" name="minIMDB" value="@Model.minIMDB"/>
+                <input type="number" min="0" max="10" step="0.1" name="minIMDB" value="@Model.minIMDB" />
             </label>
             <label>
                 Maxiumum IMDB Rating:
-                <input type="number" min="0" max="10" step="0.1" name="maxIMDB" value="@Model.maxIMDB"/>
+                <input type="number" min="0" max="10" step="0.1" name="maxIMDB" value="@Model.maxIMDB" />
             </label>
 
+            <h4>Sort By</h4>
+            <select name="sort">
+                <option value="title" default selected="@(Model.sort == "title")">Title</option>
+                <option value="director" selected="@(Model.sort == "director")">Director</option>
+                <option value="year" selected="@(Model.sort == "year")">Year</option>
+                <option value="imdb" selected="@(Model.sort == "imdb")">IMDB Rating</option>
+                <option value="rt" selected="@(Model.sort == "rt")">Tomatoes Rating</option>
+            </select>
         </form>
     </div>
 
